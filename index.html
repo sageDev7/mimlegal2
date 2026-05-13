@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIM Legal — Estudio Jurídico Boutique · Buenos Aires</title>
+  <meta name="description" content="MIM Legal — Asesoramiento legal integral a personas, familias y empresas. Derecho civil, penal, laboral, comercial y migratorio. Buenos Aires." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --navy:      #16285f;
+      --navy-mid:  #1e367a;
+      --navy-lt:   #27449c;
+      --white:     #ffffff;
+      --off:       #f5f6fa;
+      --warm:      #eeeae4;
+      --gray:      #8a8fa8;
+      --gray-lt:   #c4c8d8;
+      --gold:      #daa520;
+      --border:    rgba(22,40,95,0.1);
+      --border-lt: rgba(22,40,95,0.06);
+      --font-serif: 'DM Serif Display', Georgia, serif;
+      --font-body:  'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--navy); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── UTILS ── */
+    .eyebrow { font-family: var(--font-body); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gray); display: block; margin-bottom: 0.8rem; }
+    .b-rule { width: 32px; height: 2px; background: var(--navy); display: block; }
+    .b-rule.center { margin: 0 auto; }
+    .b-rule.lt { background: rgba(255,255,255,0.25); }
+
+    /* ── BUTTONS ── */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; font-family: var(--font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 1rem 2.2rem; cursor: pointer; border: none; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+    .btn-navy { background: var(--navy); color: var(--white); }
+    .btn-navy:hover { background: var(--navy-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(22,40,94,0.28); }
+    .btn-ghost { background: transparent; color: var(--navy); border: 1.5px solid rgba(22,40,94,0.3); }
+    .btn-ghost:hover { border-color: var(--navy); background: rgba(22,40,94,0.04); }
+    .btn-white { background: var(--white); color: var(--navy); }
+    .btn-white:hover { background: var(--off); transform: translateY(-2px); }
+    .btn-ghost-white { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.35); }
+    .btn-ghost-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+    /* ── HEADER ── */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.4rem 5%; min-height: 106px; display: flex; align-items: center; justify-content: flex-end; transition: background 0.4s, box-shadow 0.4s, min-height 0.4s; }
+    header.scrolled { background: rgba(22,40,95,0.97); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(255,255,255,0.06); min-height: 98px; }
+    .h-logo { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+    header.scrolled .h-logo { opacity: 1; pointer-events: auto; }
+    .h-logo img { height: 78px; filter: brightness(0) invert(1); opacity: 0.9; }
+    nav { display: flex; align-items: center; gap: 2.4rem; }
+    nav a { font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.75); transition: color 0.25s; position: relative; }
+    nav a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1.5px; background: var(--white); transform: scaleX(0); transition: transform 0.3s; }
+    nav a:hover { color: var(--white); }
+    nav a:hover::after { transform: scaleX(1); }
+    header.scrolled nav a { color: rgba(255,255,255,0.65); }
+    header.scrolled nav a::after { background: var(--white); }
+    header.scrolled nav a:hover { color: var(--white); }
+    .nav-cta { background: var(--white); color: var(--navy) !important; padding: 0.6rem 1.4rem; font-weight: 700; }
+    .nav-cta:hover { background: var(--off) !important; }
+    .nav-cta::after { display: none !important; }
+    header.scrolled .nav-cta { background: var(--white); color: var(--navy) !important; }
+    header.scrolled .nav-cta:hover { background: rgba(255,255,255,0.88) !important; }
+
+    /* Hamburger */
+    #hamburger { display: none; position: fixed; right: 5%; top: 0; height: 106px; align-items: center; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; z-index: 10000; background: none; border: none; padding: 4px; }
+    #hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all 0.32s; transform-origin: center; }
+    header.scrolled ~ #hamburger span { background: var(--white); }
+    #hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    #hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    #mobile-nav { position: fixed; top: 0; right: 0; width: 78%; max-width: 300px; height: 100vh; background: var(--navy); z-index: 9998; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2.4rem; transform: translateX(100%); transition: transform 0.4s cubic-bezier(.77,0,.175,1); }
+    #mobile-nav.open { transform: translateX(0); }
+    #mobile-nav a { font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.65); transition: color 0.25s; }
+    #mobile-nav a:hover { color: var(--white); }
+    .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9997; }
+    .nav-overlay.open { display: block; }
+
+    /* ── HERO ── */
+    #hero { min-height: 100vh; background: var(--navy); display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; padding: 106px 5% 8vh; }
+    #hero::before { content: ''; position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=80'); background-size: cover; background-position: center 30%; filter: grayscale(20%) brightness(0.92); opacity: 0.9; }
+    .hero-lines-deco { position: absolute; top: 0; right: 8%; height: 100%; width: 1px; background: rgba(255,255,255,0.08); z-index: 1; }
+    .hero-lines-deco::before { content: ''; position: absolute; top: 0; right: -60px; height: 100%; width: 1px; background: rgba(255,255,255,0.05); }
+    .hero-lines-deco::after { content: ''; position: absolute; top: 0; right: -120px; height: 100%; width: 1px; background: rgba(255,255,255,0.05); }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(22,40,95,0.88) 0%, rgba(22,40,95,0.48) 45%, rgba(22,40,95,0.12) 100%); z-index: 1; }
+    .hero-inner { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr auto; align-items: flex-end; gap: 4rem; padding-bottom: 2rem; }
+    .hero-left { }
+    .hero-eyebrow { font-family: var(--font-body); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: rgba(255,255,255,0.3); }
+    .hero-h1 { font-family: var(--font-serif); font-size: clamp(3.2rem, 7vw, 5rem); font-weight: 400; color: var(--white); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 1.8rem; }
+    .hero-h1 em { font-style: italic; color: var(--gold); }
+    .hero-lead { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.88; max-width: 520px; font-weight: 300; margin-bottom: 2.4rem; }
+    .hero-ctas { display: flex; gap: 1rem; }
+    .hero-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2rem; padding-bottom: 0.5rem; }
+    .hero-kv { text-align: right; }
+    .hero-kv-num { font-family: var(--font-serif); font-size: 2.4rem; color: rgba(255,255,255,0.9); line-height: 1; font-style: italic; }
+    .hero-kv-label { font-family: var(--font-body); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 0.3rem; }
+    .hero-kv-sep { width: 1px; height: 32px; background: rgba(255,255,255,0.1); align-self: flex-end; }
+
+    /* ── TICKER ── */
+    .ticker-wrap { background: var(--off); overflow: hidden; padding: 0.88rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .ticker-track { display: flex; gap: 3rem; animation: ticker 35s linear infinite; width: max-content; }
+    .ticker-item { display: flex; align-items: center; gap: 0.85rem; font-family: var(--font-body); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(22,40,95,0.35); white-space: nowrap; flex-shrink: 0; }
+    .ticker-dot { width: 3px; height: 3px; background: rgba(22,40,95,0.2); border-radius: 50%; flex-shrink: 0; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── BANDA BOUTIQUE ── */
+    #boutique { padding: 80px 5%; background: var(--white); position: relative; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    #boutique::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(22,40,95,0.04) 1px, transparent 1px); background-size: 28px 28px; }
+    .boutique-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr; gap: 3rem; align-items: center; }
+    .boutique-sep { background: var(--border); align-self: stretch; }
+    .boutique-item { text-align: center; padding: 0 1rem; }
+    .boutique-item-icon { font-family: var(--font-serif); font-size: 2.2rem; font-style: italic; color: rgba(22,40,95,0.1); line-height: 1; margin-bottom: 0.8rem; }
+    .boutique-item h3 { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.5rem; }
+    .boutique-item p { font-size: 0.82rem; color: rgba(22,40,95,0.52); line-height: 1.72; font-weight: 300; }
+
+    /* ── DIFERENCIADORES ── */
+    #diferenciadores { padding: 110px 5%; background: var(--white); position: relative; overflow: hidden; }
+    #diferenciadores::before { content: ''; position: absolute; top: 0; left: 5%; right: 5%; height: 1px; background: var(--border); }
+    #diferenciadores::after { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(-55deg, transparent, transparent 40px, rgba(22,40,95,0.072) 40px, rgba(22,40,95,0.072) 41px); pointer-events: none; z-index: 0; }
+    .dif-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; position: relative; z-index: 1; }
+    .dif-left h2 { font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 400; color: var(--navy); line-height: 1.1; margin-bottom: 1rem; }
+    .dif-left h2 em { font-style: italic; color: var(--gold); }
+    .dif-left p { font-size: 0.9rem; color: rgba(22,40,95,0.55); line-height: 1.95; font-weight: 300; margin-bottom: 1.6rem; }
+    .dif-left .btn { margin-top: 0.4rem; }
+    /* Items derecha */
+    .dif-items { display: flex; flex-direction: column; gap: 0; background: var(--white); padding: 2rem 2.4rem; }
+    .dif-item { display: flex; gap: 1.4rem; padding: 2rem 0; border-bottom: 1px solid var(--border-lt); transition: padding-left 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .dif-item:first-child { padding-top: 0; }
+    .dif-item:last-child { border-bottom: none; }
+    .dif-item:hover { padding-left: 0.6rem; }
+    .dif-num { font-family: var(--font-serif); font-size: 2.8rem; color: rgba(22,40,95,0.08); line-height: 1; font-weight: 400; flex-shrink: 0; width: 48px; }
+    .dif-content h3 { font-family: var(--font-body); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.5rem; }
+    .dif-content p { font-size: 0.86rem; color: rgba(22,40,95,0.52); line-height: 1.72; font-weight: 300; }
+
+    /* ── ÁREAS ── */
+    #areas { padding: 110px 5%; background: var(--off); position: relative; overflow: hidden; }
+    #areas::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(22,40,95,0.05) 1px, transparent 1px); background-size: 32px 32px; }
+    .areas-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .areas-header { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; margin-bottom: 4rem; }
+    .areas-header h2 { font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 400; color: var(--navy); line-height: 1.1; }
+    .areas-header h2 em { font-style: italic; color: var(--gold); }
+    .areas-header-right p { font-size: 0.88rem; color: rgba(22,40,95,0.52); line-height: 1.88; font-weight: 300; }
+    /* Grid de áreas */
+    .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .area-card { background: var(--white); padding: 2.4rem 2rem; position: relative; transition: background 0.35s; overflow: hidden; }
+    .area-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--navy); transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .area-card:hover { background: var(--off); }
+    .area-card:hover::after { transform: scaleX(1); }
+    .area-num { font-family: var(--font-serif); font-size: 3.5rem; color: rgba(22,40,95,0.05); line-height: 1; position: absolute; top: 1rem; right: 1.4rem; font-weight: 400; font-style: italic; }
+    .area-card h3 { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin-bottom: 1rem; }
+    .area-list { display: flex; flex-direction: column; gap: 0.35rem; }
+    .area-list li { font-size: 0.82rem; color: rgba(22,40,95,0.52); font-weight: 300; padding-left: 0.8rem; position: relative; }
+    .area-list li::before { content: '–'; position: absolute; left: 0; color: rgba(22,40,95,0.25); }
+
+    /* ── SOBRE ── */
+    #sobre { padding: 110px 5%; background: var(--off); position: relative; overflow: hidden; }
+    #sobre::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(22,40,95,0.156) 1px, transparent 1px); background-size: 22px 22px; }
+    #sobre::after { content: ''; position: absolute; top: 0; right: 0; width: 45%; height: 100%; background: radial-gradient(ellipse at top right, rgba(22,40,95,0.1) 0%, transparent 65%); pointer-events: none; }
+    .sobre-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 8rem; align-items: center; position: relative; z-index: 1; }
+    /* Logo en sección clara — visible */
+    .sobre-logo-col { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; align-self: stretch; }
+    .sobre-logo-wrap { width: 240px; }
+    .sobre-logo-wrap img { width: 100%; filter: brightness(0) saturate(100%) invert(13%) sepia(48%) saturate(3015%) hue-rotate(214deg) brightness(93%) contrast(100%); }
+    .sobre-divider { width: 1px; height: 120px; background: var(--border); }
+    .sobre-text h2 { font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 400; color: var(--navy); line-height: 1.1; margin-bottom: 0.5rem; }
+    .sobre-text h2 em { font-style: italic; color: var(--gold); }
+    .sobre-rule { width: 32px; height: 2px; background: var(--gold); display: block; margin: 1.2rem 0 1.6rem; }
+    .sobre-text p { font-size: 0.9rem; color: rgba(22,40,95,0.55); line-height: 1.95; font-weight: 300; margin-bottom: 1rem; }
+    .sobre-text p strong { color: var(--navy); font-weight: 600; }
+    .sobre-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.4rem; }
+    .sobre-pill { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); border: 1px solid var(--border); padding: 0.38rem 0.9rem; transition: all 0.28s; }
+    .sobre-pill:hover { background: var(--navy); color: var(--white); }
+
+    /* ── CONTACTO ── */
+    #contacto { padding: 110px 5%; background: var(--white); position: relative; overflow: hidden; }
+    #contacto::before { content: ''; position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1800&q=80'); background-size: cover; background-position: center; filter: grayscale(100%) brightness(0.95); opacity: 0.04; }
+    .contacto-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+    /* Header contacto */
+    .contacto-top { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; margin-bottom: 5rem; padding-bottom: 4rem; border-bottom: 1px solid var(--border); }
+    .contacto-top h2 { font-family: var(--font-serif); font-size: clamp(2.8rem, 5.5vw, 5.5rem); font-weight: 400; color: var(--navy); line-height: 1.05; }
+    .contacto-top h2 em { font-style: italic; color: var(--gold); }
+    .contacto-top-right p { font-size: 0.88rem; color: rgba(22,40,95,0.52); line-height: 1.88; font-weight: 300; margin-bottom: 1.8rem; }
+    
+    /* Formulario Único */
+    .contacto-forms { max-width: 650px; margin: 0 auto; }
+    .form-block { padding: 0; }
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .f-group { margin-bottom: 0.8rem; }
+    .f-group label { display: block; font-family: var(--font-body); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(22,40,95,0.45); margin-bottom: 0.4rem; }
+    .f-group input, .f-group select, .f-group textarea { width: 100%; padding: 0.82rem 1rem; background: var(--off); border: 1px solid var(--border); border-bottom: 1px solid rgba(22,40,95,0.25); color: var(--navy); font-family: var(--font-body); font-size: 0.87rem; outline: none; transition: border-color 0.3s; }
+    .f-group select { appearance: auto; padding-right: 2rem; color: rgba(22,40,95,0.7); }
+    .f-group input::placeholder, .f-group textarea::placeholder { color: rgba(22,40,95,0.25); }
+    .f-group input:focus, .f-group select:focus, .f-group textarea:focus { border-color: var(--border); border-bottom-color: var(--navy); }
+    .f-group select option { background: var(--white); }
+    .f-group textarea { resize: vertical; min-height: 100px; }
+    .f-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .f-submit { width: 100%; margin-top: 0; }
+    
+    /* Info contacto */
+    .contacto-info { margin-top: 5rem; padding-top: 4rem; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
+    .c-info-item span { display: block; font-family: var(--font-body); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(22,40,95,0.35); margin-bottom: 0.5rem; }
+    .c-info-item p { font-size: 0.85rem; color: rgba(22,40,95,0.65); font-weight: 300; line-height: 1.5; }
+    .c-info-item a { color: rgba(22,40,95,0.65); transition: color 0.25s; }
+    .c-info-item a:hover { color: var(--navy); }
+
+    /* ── MAPA ── */
+    #mapa { height: 380px; }
+    #mapa iframe { width: 100%; height: 100%; border: none; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy); padding: 44px 5% 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { display: flex; align-items: center; gap: 1.4rem; }
+    .footer-brand img { height: 32px; filter: brightness(0) invert(1); opacity: 0.55; }
+    .footer-brand-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.1); }
+    .footer-brand p { font-size: 0.72rem; color: rgba(255,255,255,0.25); font-weight: 300; }
+    .footer-right { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .footer-right a { font-size: 0.72rem; color: rgba(255,255,255,0.25); transition: color 0.25s; }
+    .footer-right a:hover { color: rgba(255,255,255,0.6); }
+    .footer-dev { font-size: 0.7rem; color: rgba(255,255,255,0.18); }
+    .footer-dev a { color: rgba(255,255,255,0.35); transition: color 0.25s; }
+    .footer-dev a:hover { color: rgba(255,255,255,0.6); }
+
+    /* ── WA FLOAT ── */
+    .wa-float { position: fixed; bottom: 26px; right: 26px; width: 52px; height: 52px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.4rem; z-index: 999; animation: wapulse 2.5s infinite; transition: transform 0.3s, opacity 0.4s; opacity: 0; pointer-events: none; }
+    .wa-float.visible { opacity: 1; pointer-events: auto; }
+    .wa-float:hover { transform: scale(1.08); }
+    @keyframes wapulse { 0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,0.3); } 50% { box-shadow: 0 4px 28px rgba(37,211,102,0.55), 0 0 0 7px rgba(37,211,102,0.07); } }
+
+    /* ── REVEAL & TRANSITIONS ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-28px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(28px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .stagger-child { opacity: 0; transform: translateY(16px); transition: opacity 0.55s cubic-bezier(0.4,0,0.2,1), transform 0.55s cubic-bezier(0.4,0,0.2,1); }
+    .stagger-child.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .dif-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+      .areas-header { grid-template-columns: 1fr; gap: 2rem; }
+      .areas-grid { grid-template-columns: repeat(2, 1fr); }
+      .sobre-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .sobre-logo-col { flex-direction: row; justify-content: center; }
+      .sobre-divider { width: 40px; height: 1px; }
+      .contacto-top { grid-template-columns: 1fr; gap: 2rem; }
+      .contacto-info { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      #hamburger { display: flex; }
+      header { justify-content: center; padding: 1.4rem 5%; }
+      .h-logo { position: static; transform: none; opacity: 0; pointer-events: none; }
+      header.scrolled .h-logo { opacity: 1; pointer-events: auto; }
+      #hero { align-items: center; justify-content: center; padding: 70px 5% 5vh; }
+      .hero-inner { padding: 0; grid-template-columns: 1fr; }
+      .hero-h1 { font-size: clamp(2.6rem, 10vw, 4rem); }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .hero-ctas .btn { width: auto; min-width: 200px; }
+      .hero-left { text-align: center; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-eyebrow::before { display: none; }
+      .dif-inner { grid-template-columns: 1fr; text-align: center; }
+      .dif-left { text-align: center; }
+      .dif-left .btn { display: inline-flex; }
+      .dif-item { flex-direction: column; align-items: center; text-align: center; }
+      .areas-grid { grid-template-columns: 1fr; }
+      .areas-header { text-align: center; }
+      .areas-header h2 { text-align: center; }
+      .areas-header-right { text-align: center; }
+      .area-card { text-align: center; }
+      .area-card h3 { text-align: center; }
+      .area-list { align-items: center; }
+      .area-list li { padding-left: 0; }
+      .area-list li::before { display: none; }
+      .sobre-inner { grid-template-columns: 1fr; text-align: center; }
+      .sobre-rule { margin: 1.2rem auto; }
+      .sobre-pills { justify-content: center; }
+      .sobre-logo-col { flex-direction: column; }
+      .sobre-divider { display: none; }
+      .boutique-inner { grid-template-columns: 1fr; }
+      .boutique-sep { display: none; }
+      .boutique-item { padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .boutique-item:last-child { border-bottom: none; }
+      #diferenciadores, #areas, #sobre, #contacto, #boutique { padding: 70px 5%; }
+      .contacto-top { text-align: center; }
+      .contacto-top-right { text-align: center; }
+      .contacto-top-right .btn { display: inline-flex; }
+      .f-actions { grid-template-columns: 1fr; }
+      .contacto-info { grid-template-columns: 1fr 1fr; text-align: center; }
+      .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 1.2rem; }
+      .footer-brand { flex-direction: column; align-items: center; gap: 0.8rem; }
+      .footer-brand-sep { display: none; }
+      .footer-right { justify-content: center; gap: 1rem; }
+      .footer-dev { text-align: center; }
+      #mapa { height: 280px; }
+    }
+    @media (max-width: 500px) {
+      #hero { padding: 90px 5% 6vh; }
+      .contacto-info { grid-template-columns: 1fr; }
+      .contacto-top h2 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <div class="h-logo"><img src="./logo.png" alt="MIM Legal" /></div>
+  <nav>
+    <a href="#areas">Áreas</a>
+    <a href="#sobre">El Estudio</a>
+    <a href="#contacto" class="nav-cta">Consultar</a>
+  </nav>
+</header>
+<button id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+<div class="nav-overlay" id="nav-overlay"></div>
+<nav id="mobile-nav">
+  <a href="#areas">Áreas</a>
+  <a href="#sobre">El Estudio</a>
+  <a href="#diferenciadores">Por qué elegirnos</a>
+  <a href="#contacto">Consultar</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-lines-deco"></div>
+  <div class="hero-overlay"></div>
+  <div style="position:absolute;top:2.5rem;left:5%;z-index:2;display:flex;gap:8px;opacity:0.15;">
+    <div style="width:2px;height:48px;background:white;"></div>
+    <div style="width:2px;height:32px;background:white;align-self:flex-end;"></div>
+    <div style="width:2px;height:48px;background:white;"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Estudio Jurídico Boutique · Buenos Aires</div>
+      <h1 class="hero-h1">Asesoramiento legal<br/><em>estratégico,</em><br/>claro y personalizado.</h1>
+      <p class="hero-lead">En MIM LEGAL brindamos soluciones jurídicas para personas y empresas, combinando experiencia, análisis estratégico y atención cercana para resolver cada situación con eficiencia y seguridad.</p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/5491155284644" target="_blank" class="btn btn-white">Consultar por WhatsApp</a>
+        <a href="#areas" class="btn btn-ghost-white">Áreas de práctica</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-kv">
+        <div class="hero-kv-num"><span class="counter" data-target="3" data-suffix="">0</span></div>
+        <div class="hero-kv-label">países de<br/>operación</div>
+      </div>
+      <div class="hero-kv-sep"></div>
+      <div class="hero-kv">
+        <div class="hero-kv-num"><span class="counter" data-target="100" data-suffix="%">0</span></div>
+        <div class="hero-kv-label">atención<br/>directa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><div class="ticker-dot"></div>Derecho Civil y Familiar</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Derecho Penal</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Derecho Laboral</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Derecho Comercial</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Derecho Migratorio</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Litigios en Argentina</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Litigios en Uruguay</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Litigios en España</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Coaching Jurídico</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Derecho Civil y Familiar</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Derecho Penal</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Derecho Laboral</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Derecho Comercial</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Derecho Migratorio</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Litigios en Argentina</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Litigios en Uruguay</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Litigios en España</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Coaching Jurídico</div>
+  </div>
+</div>
+
+<section id="boutique">
+  <div class="boutique-inner">
+    <div class="boutique-item reveal">
+      <div class="boutique-item-icon">B</div>
+      <h3>Estudio boutique</h3>
+      <p>Brindamos un servicio legal cercano, personalizado y estratégico. Priorizamos la calidad de atención, el análisis profundo de cada caso y un acompañamiento real durante todo el proceso.</p>
+    </div>
+    <div class="boutique-sep"></div>
+    <div class="boutique-item reveal" style="transition-delay:0.1s">
+      <div class="boutique-item-icon">D</div>
+      <h3>Foco en soluciones</h3>
+      <p>Trabajamos cada asunto con estrategia, compromiso y criterio jurídico, buscando soluciones concretas y eficientes para cada cliente.</p>
+    </div>
+    <div class="boutique-sep"></div>
+    <div class="boutique-item reveal" style="transition-delay:0.2s">
+      <div class="boutique-item-icon">R</div>
+      <h3>Foco en resultados</h3>
+      <p>No facturamos horas. Nos comprometemos con el resultado. Tu éxito es el nuestro, y eso define cómo trabajamos cada expediente.</p>
+    </div>
+  </div>
+</section>
+
+<section id="diferenciadores">
+  <div class="dif-inner">
+    <div class="dif-left reveal-left">
+      <span class="eyebrow">Por qué elegirnos</span>
+      <h2>Un estudio que te acompaña con<br/><em>estrategia y cercanía.</em></h2>
+      <p>En MIM LEGAL entendemos que detrás de cada consulta hay una situación importante. Por eso brindamos asesoramiento jurídico claro, personalizado y cercano, con comunicación fluida y un seguimiento real de cada caso.</p>
+      <a href="#contacto" class="btn btn-navy">Agendar consulta</a>
+    </div>
+    <div class="dif-items reveal-right" style="transition-delay:0.1s">
+      <div class="dif-item stagger-child">
+        <div class="dif-num">01</div>
+        <div class="dif-content">
+          <h3>Atención directa y personalizada</h3>
+          <p>Cada caso es acompañado de manera cercana y profesional, con seguimiento real y comunicación clara durante todo el proceso. Priorizamos el trato personalizado y el compromiso con cada situación.</p>
+        </div>
+      </div>
+      <div class="dif-item stagger-child">
+        <div class="dif-num">02</div>
+        <div class="dif-content">
+          <h3>Comunicación clara y ágil</h3>
+          <p>Priorizamos una comunicación cercana, clara y eficiente. Explicamos cada situación jurídica de manera simple, para que nuestros clientes puedan tomar decisiones con tranquilidad y seguridad.</p>
+        </div>
+      </div>
+      <div class="dif-item stagger-child">
+        <div class="dif-num">03</div>
+        <div class="dif-content">
+          <h3>Enfoque estratégico y resolutivo</h3>
+          <p>Cada caso requiere una mirada jurídica y práctica. Analizamos cada situación en profundidad para diseñar estrategias claras, eficientes y orientadas a soluciones concretas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="areas">
+  <div class="areas-inner">
+    <div class="areas-header reveal">
+      <h2>Áreas de<br/><em>práctica</em></h2>
+      <div class="areas-header-right">
+        <p>Brindamos asesoramiento jurídico estratégico y personalizado en distintas áreas del derecho, acompañando a personas, familias y empresas con un enfoque cercano, práctico y orientado a soluciones.<br/><br/>Contamos con una red de corresponsales y alianzas profesionales en todo el país, Uruguay y España, lo que nos permite acompañar asuntos con componente internacional y brindar asistencia legal coordinada más allá de las fronteras.</p>
+      </div>
+    </div>
+    <div class="areas-grid reveal">
+      <div class="area-card stagger-child">
+        <div class="area-num">01</div>
+        <h3>Comercial y Corporativo</h3>
+        <ul class="area-list">
+          <li>Contratos comerciales y civiles</li>
+          <li>Constitución y asesoramiento societario</li>
+          <li>Conflictos societarios</li>
+          <li>Asesoramiento legal para empresas, emprendedores e influencers</li>
+        </ul>
+      </div>
+      <div class="area-card">
+        <div class="area-num">02</div>
+        <h3>Migratorio</h3>
+        <ul class="area-list">
+          <li>Residencias temporarias y permanentes</li>
+          <li>Radicaciones y regularización migratoria</li>
+          <li>Ciudadanía y nacionalidad</li>
+          <li>DNI y trámites migratorios</li>
+          <li>Apostillas, legalizaciones y documentación internacional</li>
+          <li>Asesoramiento migratorio integral</li>
+        </ul>
+      </div>
+      <div class="area-card">
+        <div class="area-num">03</div>
+        <h3>Laboral</h3>
+        <ul class="area-list">
+          <li>Despidos e indemnizaciones</li>
+          <li>Accidentes de trabajo (ART)</li>
+          <li>Reclamos laborales</li>
+          <li>Asesoramiento a empleadores y empresas</li>
+        </ul>
+      </div>
+      <div class="area-card">
+        <div class="area-num">04</div>
+        <h3>Civil y Sucesiones</h3>
+        <ul class="area-list">
+          <li>Divorcios y separaciones</li>
+          <li>Alimentos y cuidado personal</li>
+          <li>Sucesiones y herencias</li>
+          <li>Daños y perjuicios</li>
+          <li>Contratos civiles</li>
+        </ul>
+      </div>
+      <div class="area-card">
+        <div class="area-num">05</div>
+        <h3>Familia</h3>
+        <ul class="area-list">
+          <li>Divorcios y separaciones</li>
+          <li>Alimentos y cuidado personal</li>
+          <li>Régimen de comunicación</li>
+          <li>Adopciones y filiación</li>
+        </ul>
+      </div>
+      <div class="area-card">
+        <div class="area-num">06</div>
+        <h3>Penal</h3>
+        <ul class="area-list">
+          <li>Defensa penal</li>
+          <li>Delitos económicos</li>
+          <li>Delitos contra las personas</li>
+          <li>Contravenciones y asistencia en procesos penales</li>
+        </ul>
+      </div>
+      <div class="area-card">
+        <div class="area-num">07</div>
+        <h3>Mentoría y Formación Jurídica</h3>
+        <ul class="area-list">
+          <li>Acompañamiento para estudiantes de derecho</li>
+          <li>Formación práctica para abogados nóveles</li>
+          <li>Estrategia profesional y ejercicio independiente</li>
+          <li>Herramientas aplicadas a la práctica profesional</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="sobre-inner">
+    <div class="sobre-logo-col reveal-left">
+      <div class="sobre-logo-wrap">
+        <img src="./logo.png" alt="MIM Legal" />
+      </div>
+      <div class="sobre-divider"></div>
+    </div>
+    <div class="sobre-text reveal-right" style="transition-delay:0.12s">
+      <span class="eyebrow">Quiénes somos</span>
+      <div class="sobre-rule"></div>
+      <p>Somos un <strong>estudio jurídico boutique</strong> que brinda asesoramiento legal estratégico y personalizado a personas, familias y empresas, con profesionales con más de veinte años en el mercado.</p>
+      <p>En MIM LEGAL trabajamos cada caso con compromiso, cercanía, criterio jurídico y ética profesional, priorizando una comunicación clara y un acompañamiento real durante todo el proceso.</p>
+      <p>Nuestro objetivo es brindar <strong>soluciones concretas</strong>, prevenir conflictos y acompañar decisiones importantes con seriedad, profesionalismo y una mirada práctica.</p>
+      <div class="sobre-pills">
+        <div class="sobre-pill">Boutique</div>
+        <div class="sobre-pill">Personalizado</div>
+        <div class="sobre-pill">Estratégico</div>
+        <div class="sobre-pill">Argentina</div>
+        <div class="sobre-pill">Uruguay</div>
+        <div class="sobre-pill">España</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="contacto-inner">
+    <div class="contacto-top reveal">
+      <h2>Conversemos<br/>sobre tu <em>situación legal.</em></h2>
+      <div class="contacto-top-right">
+        <p>Estamos para acompañarte y ayudarte a encontrar la mejor estrategia para tu caso. Contactanos por WhatsApp o dejános tu consulta.</p>
+      </div>
+    </div>
+    
+    <div class="contacto-forms reveal">
+      <div class="form-block">
+        <form id="contactForm">
+          <div class="f-row">
+            <div class="f-group"><label>Nombre</label><input type="text" id="c-nombre" placeholder="Tu nombre" required /></div>
+            <div class="f-group"><label>Teléfono</label><input type="tel" id="c-tel" placeholder="11 0000-0000" /></div>
+          </div>
+          <div class="f-group">
+            <label>Área</label>
+            <select id="c-area">
+              <option value="">Seleccioná</option>
+              <option>Civil y Familiar</option>
+              <option>Penal</option>
+              <option>Laboral</option>
+              <option>Comercial / Corporativo</option>
+              <option>Migratorio</option>
+              <option>Mentoría y Formación Jurídica</option>
+              <option>Otra consulta</option>
+            </select>
+          </div>
+          <div class="f-group"><label>Consulta</label><textarea id="c-msg" placeholder="Contanos tu situación. Todo es confidencial."></textarea></div>
+          <div class="f-actions">
+            <button type="button" id="btnEmail" class="btn btn-navy f-submit"><i class="fa-regular fa-envelope"></i> Enviar por Email</button>
+            <button type="button" id="btnWa" class="btn btn-ghost f-submit"><i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="contacto-info reveal">
+      <div class="c-info-item">
+        <span>WhatsApp</span>
+        <p><a href="https://wa.me/5491155284644">+54 9 11 5528-4644</a></p>
+      </div>
+      <div class="c-info-item">
+        <span>Email</span>
+        <p><a href="mailto:administracion@mimlegal.com.ar">administracion@mimlegal.com.ar</a></p>
+      </div>
+      <div class="c-info-item">
+        <span>Dirección</span>
+        <p>Rodríguez Peña 454, 4° Piso<br/>Ciudad de Buenos Aires</p>
+      </div>
+      <div class="c-info-item">
+        <span>Redes</span>
+        <p>
+          <a href="https://www.instagram.com/mimlegal/" target="_blank">@mimlegal</a><br/>
+          <a href="https://www.tiktok.com/@mimlegalok" target="_blank">mimlegalok</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="mapa">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.2!2d-58.3939!3d-34.6001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb900f13d9b5%3A0x1!2sRodr%C3%ADguez+Pe%C3%B1a+454%2C+Buenos+Aires!5e0!3m2!1ses!2sar!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="./logo.png" alt="MIM Legal" />
+      <div class="footer-brand-sep"></div>
+      <p>© 2026 MIM Legal — Estudio Jurídico Boutique. Buenos Aires.</p>
+    </div>
+    <div class="footer-right">
+      <a href="#areas">Áreas</a>
+      <a href="#sobre">El Estudio</a>
+      <a href="#contacto">Contacto</a>
+      <span class="footer-dev">Desarrollado por <a href="https://www.instagram.com/sageedev/" target="_blank">@sageeDev</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5491155284644" target="_blank" class="wa-float" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+  // NAVBAR
+  const header = document.getElementById('header');
+  const hbgEl = document.getElementById('hamburger');
+  const hbgSpans = hbgEl.querySelectorAll('span');
+  const waFloat = document.querySelector('.wa-float');
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 60;
+    header.classList.toggle('scrolled', scrolled);
+    waFloat.classList.toggle('visible', window.scrollY > 300);
+    if (!document.getElementById('mobile-nav').classList.contains('open')) {
+      hbgSpans.forEach(s => s.style.background = 'var(--white)');
+    }
+  });
+
+  // HAMBURGER
+  const mNav = document.getElementById('mobile-nav');
+  const overlay = document.getElementById('nav-overlay');
+  function toggleNav() {
+    const open = !mNav.classList.contains('open');
+    hbgEl.classList.toggle('open', open);
+    mNav.classList.toggle('open', open);
+    overlay.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    hbgSpans.forEach(s => s.style.background = 'var(--white)');
+  }
+  hbgEl.addEventListener('click', toggleNav);
+  overlay.addEventListener('click', toggleNav);
+  document.querySelectorAll('#mobile-nav a').forEach(a => a.addEventListener('click', () => {
+    hbgEl.classList.remove('open'); mNav.classList.remove('open');
+    overlay.classList.remove('open'); document.body.style.overflow = '';
+    hbgSpans.forEach(s => s.style.background = 'var(--white)');
+  }));
+
+  // REVEAL con stagger para hijos
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('visible');
+      const children = e.target.querySelectorAll('.stagger-child');
+      children.forEach((child, i) => {
+        child.style.transitionDelay = (i * 0.1) + 's';
+        child.classList.add('visible');
+      });
+      revealObs.unobserve(e.target);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
+
+  // COUNTERS (Inicializados directamente)
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      let start = 0; const step = target / 60;
+      const timer = setInterval(() => {
+        start += step;
+        if (start >= target) { start = target; clearInterval(timer); }
+        el.textContent = Math.floor(start) + suffix;
+      }, 30);
+      counterObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(c => counterObs.observe(c));
+
+  // OBTENER DATOS FORMULARIO
+  function getFormData() {
+    return {
+      n: document.getElementById('c-nombre').value,
+      t: document.getElementById('c-tel').value,
+      a: document.getElementById('c-area').value,
+      m: document.getElementById('c-msg').value
+    };
+  }
+
+  // ACCIÓN BOTÓN EMAIL
+  document.getElementById('btnEmail').addEventListener('click', function() {
+    const form = document.getElementById('contactForm');
+    if(!form.checkValidity()) { form.reportValidity(); return; }
+    
+    const {n, t, a, m} = getFormData();
+    const subject = encodeURIComponent('Consulta Legal – ' + (a || 'General') + ' – ' + n);
+    let body = 'Nombre: ' + n + '\n';
+    if (t) body += 'Teléfono: ' + t + '\n';
+    if (a) body += 'Área: ' + a + '\n';
+    if (m) body += '\nConsulta:\n' + m;
+    
+    window.location.href = 'mailto:administracion@mimlegal.com.ar?subject=' + subject + '&body=' + encodeURIComponent(body);
+  });
+
+  // ACCIÓN BOTÓN WHATSAPP
+  document.getElementById('btnWa').addEventListener('click', function() {
+    const form = document.getElementById('contactForm');
+    if(!form.checkValidity()) { form.reportValidity(); return; }
+    
+    const {n, t, a, m} = getFormData();
+    let txt = 'Hola, me comunico desde el sitio web de MIM Legal. Mi nombre es *' + n + '*.';
+    if (a) txt += '\n\n*Consulta sobre:* ' + a;
+    if (m) txt += '\n\n*Situación:*\n' + m;
+    if (t) txt += '\n\n*Teléfono:* ' + t;
+    
+    window.open('https://wa.me/5491155284644?text=' + encodeURIComponent(txt), '_blank');
+  });
+</script>
+</body>
+</html>
