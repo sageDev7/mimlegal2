@@ -119,7 +119,7 @@
     .boutique-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr; gap: 3rem; align-items: center; }
     .boutique-sep { background: var(--border); align-self: stretch; }
     .boutique-item { text-align: center; padding: 0 1rem; }
-    .boutique-item-icon { font-family: var(--font-serif); font-size: 2.2rem; font-style: italic; color: rgba(22,40,95,0.1); line-height: 1; margin-bottom: 0.8rem; }
+    .boutique-item-icon { font-size: 1.6rem; color: var(--navy); opacity: 0.2; line-height: 1; margin-bottom: 0.8rem; }
     .boutique-item h3 { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.5rem; }
     .boutique-item p { font-size: 0.82rem; color: rgba(22,40,95,0.52); line-height: 1.72; font-weight: 300; }
 
@@ -152,7 +152,7 @@
     .areas-header-right p { font-size: 0.88rem; color: rgba(22,40,95,0.52); line-height: 1.88; font-weight: 300; }
     /* Grid de áreas */
     .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
-    .area-card { background: var(--white); padding: 2.4rem 2rem; position: relative; transition: background 0.35s; overflow: hidden; }
+    .area-card { background: var(--white); padding: 2.4rem 2rem; padding-top: 4rem; position: relative; transition: background 0.35s; overflow: hidden; }
     .area-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--navy); transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
     .area-card:hover { background: var(--off); }
     .area-card:hover::after { transform: scaleX(1); }
@@ -170,7 +170,7 @@
     /* Logo en sección clara — visible */
     .sobre-logo-col { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; align-self: stretch; }
     .sobre-logo-wrap { width: 240px; }
-    .sobre-logo-wrap img { width: 100%; filter: brightness(0) saturate(100%) invert(13%) sepia(48%) saturate(3015%) hue-rotate(214deg) brightness(93%) contrast(100%); }
+    .sobre-logo-wrap img { width: 100%; }
     .sobre-divider { width: 1px; height: 120px; background: var(--border); }
     .sobre-text h2 { font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 400; color: var(--navy); line-height: 1.1; margin-bottom: 0.5rem; }
     .sobre-text h2 em { font-style: italic; color: var(--gold); }
@@ -393,19 +393,19 @@
 <section id="boutique">
   <div class="boutique-inner">
     <div class="boutique-item reveal">
-      <div class="boutique-item-icon">B</div>
+      <div class="boutique-item-icon"><i class="fa-regular fa-building-columns"></i></div>
       <h3>Estudio boutique</h3>
       <p>Brindamos un servicio legal cercano, personalizado y estratégico. Priorizamos la calidad de atención, el análisis profundo de cada caso y un acompañamiento real durante todo el proceso.</p>
     </div>
     <div class="boutique-sep"></div>
     <div class="boutique-item reveal" style="transition-delay:0.1s">
-      <div class="boutique-item-icon">D</div>
+      <div class="boutique-item-icon"><i class="fa-regular fa-lightbulb"></i></div>
       <h3>Foco en soluciones</h3>
       <p>Trabajamos cada asunto con estrategia, compromiso y criterio jurídico, buscando soluciones concretas y eficientes para cada cliente.</p>
     </div>
     <div class="boutique-sep"></div>
     <div class="boutique-item reveal" style="transition-delay:0.2s">
-      <div class="boutique-item-icon">R</div>
+      <div class="boutique-item-icon"><i class="fa-regular fa-circle-check"></i></div>
       <h3>Foco en resultados</h3>
       <p>No facturamos horas. Nos comprometemos con el resultado. Tu éxito es el nuestro, y eso define cómo trabajamos cada expediente.</p>
     </div>
@@ -449,7 +449,7 @@
 <section id="areas">
   <div class="areas-inner">
     <div class="areas-header reveal">
-      <h2>Nuestras áreas <br>de <em>práctica</em></h2>
+      <h2>Áreas de<br/><em>práctica</em></h2>
       <div class="areas-header-right">
         <p>Brindamos asesoramiento jurídico estratégico y personalizado en distintas áreas del derecho, acompañando a personas, familias y empresas con un enfoque cercano, práctico y orientado a soluciones.<br/><br/>Contamos con una red de corresponsales y alianzas profesionales en todo el país, Uruguay y España, lo que nos permite acompañar asuntos con componente internacional y brindar asistencia legal coordinada más allá de las fronteras.</p>
       </div>
@@ -489,23 +489,22 @@
       </div>
       <div class="area-card">
         <div class="area-num">04</div>
-        <h3>Civil y Sucesiones</h3>
+        <h3>Civil</h3>
         <ul class="area-list">
-          <li>Divorcios y separaciones</li>
-          <li>Alimentos y cuidado personal</li>
-          <li>Sucesiones y herencias</li>
           <li>Daños y perjuicios</li>
           <li>Contratos civiles</li>
+          <li>Desalojos</li>
         </ul>
       </div>
       <div class="area-card">
         <div class="area-num">05</div>
-        <h3>Familia</h3>
+        <h3>Familia y Sucesiones</h3>
         <ul class="area-list">
-          <li>Divorcios y separaciones</li>
+          <li>Divorcios</li>
           <li>Alimentos y cuidado personal</li>
           <li>Régimen de comunicación</li>
           <li>Adopciones y filiación</li>
+          <li>Sucesiones y herencias</li>
         </ul>
       </div>
       <div class="area-card">
@@ -536,7 +535,7 @@
   <div class="sobre-inner">
     <div class="sobre-logo-col reveal-left">
       <div class="sobre-logo-wrap">
-        <img src="./logo.png" alt="MIM Legal" />
+        <img src="./logo-azul.png" alt="MIM Legal" />
       </div>
       <div class="sobre-divider"></div>
     </div>
@@ -612,8 +611,8 @@
       <div class="c-info-item">
         <span>Redes</span>
         <p>
-          <a href="https://www.instagram.com/mimlegal/" target="_blank">@mimlegal</a><br/>
-          <a href="https://www.tiktok.com/@mimlegalok" target="_blank">mimlegalok</a>
+          <a href="https://www.instagram.com/mimlegal/" target="_blank"><i class="fa-brands fa-instagram"></i> @mimlegal</a><br/>
+          <a href="https://www.tiktok.com/@mimlegalok" target="_blank"><i class="fa-brands fa-tiktok"></i> @mimlegalok</a>
         </p>
       </div>
     </div>
